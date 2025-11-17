@@ -64,6 +64,7 @@ class FilaDeTablaDeUsuario extends React.Component {
                 <td>{this.props.usuario.nombre}</td>
                 <td>{this.props.usuario.apellido}</td>
                 <td>{this.props.usuario.telefono}</td>
+                <td>{this.props.usuario.email}</td>
                 <td>{this.props.usuario.fecha_registro}</td>   
                 <td>{this.props.usuario.ultima_modificacion}</td>
                 <td>

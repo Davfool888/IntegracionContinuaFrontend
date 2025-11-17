@@ -20,6 +20,7 @@ class AgregarUsuario extends React.Component {
                 nombre: "",
                 apellido: "",
                 telefono: "",
+                email: "", 
             },
         };
         this.manejarCambio = this.manejarCambio.bind(this);
@@ -69,6 +70,18 @@ class AgregarUsuario extends React.Component {
                             className="form-control"
                         />
                     </div>
+                    <div className="mb-3">
+                        <label htmlFor="email" className="form-label">Correo electrónico:</label>
+                        <input
+                            required
+                            placeholder="Correo electrónico"
+                            type="email"
+                            id="email"
+                            onChange={this.manejarCambio}
+                            value={this.state.usuario.email}
+                            className="form-control"
+                        />
+                    </div>
                     <div className="d-flex gap-2">
                         <button type="submit" className="btn btn-success">Guardar</button>
                         <Link to="/usuarios/ver" className="btn btn-primary">Volver</Link>
@@ -103,7 +116,7 @@ class AgregarUsuario extends React.Component {
                 });
 
                 this.setState({
-                    usuario: { nombre: "", apellido: "", telefono: "" }
+                    usuario: { nombre: "", apellido: "", telefono: "", email: "" } // ✅ Limpiar también email
                 });
 
                 if (this.props.navigate) {

@@ -39,6 +39,7 @@ class VerUsuarios extends React.Component {
                                 <th>Nombre</th>
                                 <th>Apellido</th>
                                 <th>Teléfono</th>
+                                <th>Email</th>
                                 <th>Fecha de registro</th>
                                 <th>Fecha de edición</th>
                                 <th>Editar</th>

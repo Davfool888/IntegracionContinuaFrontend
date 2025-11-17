@@ -12,6 +12,7 @@ function EditarUsuario() {
     nombre: "",
     apellido: "",
     telefono: "",
+    email: "", 
   });
 
   // Obtener datos del usuario al cargar el componente
@@ -113,6 +114,20 @@ function EditarUsuario() {
             id="telefono"
             onChange={manejarCambio}
             value={usuario.telefono}
+            className="form-control"
+          />
+        </div>
+        <div className="mb-3">
+          <label htmlFor="email" className="form-label">
+            Correo electrónico:
+          </label>
+          <input
+            required
+            placeholder="Correo electrónico"
+            type="email"
+            id="email"
+            onChange={manejarCambio}
+            value={usuario.email}
             className="form-control"
           />
         </div>
