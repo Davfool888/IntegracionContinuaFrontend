@@ -54,3 +54,56 @@ h1, h2, h3 {
   background-color: #ff7f7f; /* rojo pastel */
   color: #ffffff; /* texto blanco */
 }
+
+
+.navbar-custom {
+  background-color: var(--color-primario);
+  color: #fff;
+}
+
+.navbar-custom .nav-link {
+  color: #fff;
+}
+
+.navbar-custom .nav-link:hover {
+  color: var(--color-acento);
+}
+
+/* Botones personalizados */
+.btn-custom {
+  background-color: var(--color-secundario);
+  color: #fff;
+  border: none;
+}
+
+.btn-custom:hover {
+  background-color: var(--color-acento);
+  color: #fff;
+}
+
+/* Inputs y formularios */
+.form-control {
+  border-radius: 0.5rem;
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+}
+
+.form-label {
+  font-weight: 600;
+}
+
+/* Tablas */
+.table-custom {
+  background-color: #fff;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.table-custom th {
+  background-color: var(--color-secundario);
+  color: #fff;
+}
+
+.table-custom td, .table-custom th {
+  padding: 0.75rem;
+  text-align: center;}

@@ -20,7 +20,7 @@ class AgregarUsuario extends React.Component {
                 nombre: "",
                 apellido: "",
                 telefono: "",
-                email: "", 
+                email: "",
             },
         };
         this.manejarCambio = this.manejarCambio.bind(this);
@@ -46,6 +46,7 @@ class AgregarUsuario extends React.Component {
                             className="form-control"
                         />
                     </div>
+
                     <div className="mb-3">
                         <label htmlFor="apellido" className="form-label">Apellido:</label>
                         <input
@@ -58,18 +59,23 @@ class AgregarUsuario extends React.Component {
                             className="form-control"
                         />
                     </div>
+
                     <div className="mb-3">
                         <label htmlFor="telefono" className="form-label">Teléfono:</label>
                         <input
                             required
                             placeholder="Teléfono"
-                            type="number"
+                            type="tel"
                             id="telefono"
                             onChange={this.manejarCambio}
                             value={this.state.usuario.telefono}
                             className="form-control"
+                            pattern="[0-9]{10}"
+                            maxLength={10}
+                            title="Ingrese un número de teléfono válido de 10 dígitos, sin espacios ni guiones"
                         />
                     </div>
+
                     <div className="mb-3">
                         <label htmlFor="email" className="form-label">Correo electrónico:</label>
                         <input
@@ -80,8 +86,10 @@ class AgregarUsuario extends React.Component {
                             onChange={this.manejarCambio}
                             value={this.state.usuario.email}
                             className="form-control"
+                            title="Ingrese un correo electrónico válido"
                         />
                     </div>
+
                     <div className="d-flex gap-2">
                         <button type="submit" className="btn btn-success">Guardar</button>
                         <Link to="/usuarios/ver" className="btn btn-primary">Volver</Link>
@@ -108,15 +116,10 @@ class AgregarUsuario extends React.Component {
                 toast.success("Usuario guardado ✔️", {
                     position: "top-left",
                     autoClose: 2000,
-                    hideProgressBar: false,
-                    closeOnClick: true,
-                    pauseOnHover: true,
-                    draggable: true,
-                    progress: undefined,
                 });
 
                 this.setState({
-                    usuario: { nombre: "", apellido: "", telefono: "", email: "" } // ✅ Limpiar también email
+                    usuario: { nombre: "", apellido: "", telefono: "", email: "" }
                 });
 
                 if (this.props.navigate) {
@@ -134,14 +137,11 @@ class AgregarUsuario extends React.Component {
 
     manejarCambio(evento) {
         const clave = evento.target.id;
-        let valor = evento.target.value;
+        const valor = evento.target.value;
 
         this.setState(state => {
             const usuarioActualizado = { ...state.usuario };
-            if (clave === "telefono") {
-                valor = parseFloat(valor);
-            }
-            usuarioActualizado[clave] = valor;
+            usuarioActualizado[clave] = valor; 
             return { usuario: usuarioActualizado };
         });
     }

@@ -24,8 +24,8 @@ class FilaDeTablaDeUsuario extends React.Component {
             text: `¿Eliminar "${this.props.usuario.nombre}"?`,
             icon: 'question',
             showCancelButton: true,
-            confirmButtonColor: '#0d6efd', // azul bootstrap
-            cancelButtonColor: '#dc3545', // rojo bootstrap
+            confirmButtonColor: '#8d6efd', // azul bootstrap
+            cancelButtonColor: '#cc3545', // rojo bootstrap
             cancelButtonText: 'No',
             confirmButtonText: 'Sí, eliminar'
         });
@@ -72,12 +72,12 @@ class FilaDeTablaDeUsuario extends React.Component {
                         to={`/usuarios/editar/${this.props.usuario.id}`} 
                         className="btn btn-info btn-sm"
                     >
-                        Editar
+                        ✏️
                     </Link>
                 </td>
                 <td>
                     <button onClick={this.eliminar} className="btn btn-danger btn-sm">
-                        Eliminar
+                        🗑️
                     </button>
                 </td>
             </tr>

@@ -5,14 +5,14 @@ import "react-toastify/dist/ReactToastify.css";
 import { Link, useParams, useNavigate } from "react-router-dom";
 
 function EditarUsuario() {
-  const { id } = useParams(); // obtiene el ID de la URL
+  const { id } = useParams();
   const navigate = useNavigate();
   const [usuario, setUsuario] = useState({
     id: "",
     nombre: "",
     apellido: "",
     telefono: "",
-    email: "", 
+    email: "",
   });
 
   // Obtener datos del usuario al cargar el componente
@@ -34,10 +34,21 @@ function EditarUsuario() {
   // Manejar cambios en los inputs
   const manejarCambio = (evento) => {
     const { id: clave, value } = evento.target;
-    setUsuario((prev) => ({
-      ...prev,
-      [clave]: clave === "telefono" ? parseFloat(value) : value,
-    }));
+
+    // Mantener teléfono como string y limitar a 10 caracteres
+    if (clave === "telefono") {
+      if (/^\d{0,10}$/.test(value)) {
+        setUsuario((prev) => ({
+          ...prev,
+          [clave]: value,
+        }));
+      }
+    } else {
+      setUsuario((prev) => ({
+        ...prev,
+        [clave]: value,
+      }));
+    }
   };
 
   // Manejar envío del formulario
@@ -75,9 +86,7 @@ function EditarUsuario() {
       <ToastContainer />
       <form onSubmit={manejarEnvioDeFormulario}>
         <div className="mb-3">
-          <label htmlFor="nombre" className="form-label">
-            Nombre:
-          </label>
+          <label htmlFor="nombre" className="form-label">Nombre:</label>
           <input
             autoFocus
             required
@@ -89,10 +98,9 @@ function EditarUsuario() {
             className="form-control"
           />
         </div>
+
         <div className="mb-3">
-          <label htmlFor="apellido" className="form-label">
-            Apellido:
-          </label>
+          <label htmlFor="apellido" className="form-label">Apellido:</label>
           <input
             required
             placeholder="Apellido"
@@ -103,24 +111,25 @@ function EditarUsuario() {
             className="form-control"
           />
         </div>
+
         <div className="mb-3">
-          <label htmlFor="telefono" className="form-label">
-            Teléfono:
-          </label>
+          <label htmlFor="telefono" className="form-label">Teléfono:</label>
           <input
             required
             placeholder="Teléfono"
-            type="number"
+            type="tel"
             id="telefono"
             onChange={manejarCambio}
             value={usuario.telefono}
             className="form-control"
+            pattern="[0-9]{10}"
+            maxLength={10}
+            title="Ingrese un número de teléfono válido de 10 dígitos, sin espacios ni guiones"
           />
         </div>
+
         <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Correo electrónico:
-          </label>
+          <label htmlFor="email" className="form-label">Correo electrónico:</label>
           <input
             required
             placeholder="Correo electrónico"
@@ -129,15 +138,13 @@ function EditarUsuario() {
             onChange={manejarCambio}
             value={usuario.email}
             className="form-control"
+            title="Ingrese un correo electrónico válido"
           />
         </div>
+
         <div className="d-flex gap-2">
-          <button type="submit" className="btn btn-success">
-            Guardar
-          </button>
-          <Link to="/usuarios/ver" className="btn btn-primary">
-            Volver
-          </Link>
+          <button type="submit" className="btn btn-success">Guardar</button>
+          <Link to="/usuarios/ver" className="btn btn-primary">Volver</Link>
         </div>
       </form>
     </div>
